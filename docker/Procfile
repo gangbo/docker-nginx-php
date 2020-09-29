@@ -1,0 +1,2 @@
+nginx: nginx -g 'daemon off;'
+phpfpm: bash /var/www/docker/run.sh
