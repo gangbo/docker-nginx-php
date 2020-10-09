@@ -10,8 +10,9 @@ services:
     restart: unless-stopped
     tty: true
     environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
+      APP_NAME: xyf-app-api
+      YII_ENV: dev
+      YII_DEBUG: 1
     working_dir: /var/www
     volumes:
       - ./:/var/www

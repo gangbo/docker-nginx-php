@@ -1,8 +1,6 @@
 FROM php:7.2-fpm
 # Set working directory
 WORKDIR /var/www
-# Copy existing application directory contents
-COPY . /var/www
 # Install dependencies
 RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list \
     && apt-get update \
@@ -24,6 +22,9 @@ RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list \
         cron
 # Clear cache
 #RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Copy existing application directory contents
+COPY . /var/www
 # Install extensions
 RUN docker-php-ext-install pdo_mysql zip exif pcntl bcmath \
     && docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
@@ -50,4 +51,4 @@ COPY --chown=www:www . /var/www
 #USER www
 # Expose port 9000 and start php-fpm server
 EXPOSE 80
-CMD ["/var/www/docker/forego", "start", "-r", "-f", "/var/www/docker/Procfile"]
+CMD ["bash", "/var/www/docker/run.sh"]
