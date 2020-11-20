@@ -13,8 +13,6 @@ crontab /etc/cron.d/app.cron && cron && crontab -l
 #    usermod -u ${PHP_USER_ID} www
 #fi
 
-mkdir -p /data/logs/xyf-app-api/app
-chown -R www-data:www-data /data/logs
 
 
 nginx

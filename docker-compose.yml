@@ -4,8 +4,8 @@ services:
   app:
     build:
       context: .
-      dockerfile: docker/Dockerfile_php72
-    image: xinfei/php72
+      dockerfile: docker/Dockerfile_php73
+    image: gangbo/php73
     #container_name: app
     restart: unless-stopped
     tty: true
@@ -21,4 +21,4 @@ services:
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
       - ./docker/cron.d/app.cron:/etc/cron.d/app.cron
     ports:
-      - "8080:80"
+      - "8880:80"
